@@ -8,9 +8,9 @@ _start:
 	mov edx, msg		; edx = dirección de la cadena msg
 	call puts			; imprime cadena msg terminada en valor nulo (0)
 
-    mov ebx, 9
+    mov ecx, 9
     mov esi, 5
-    mov byte [msg + ebx + esi * 2], '%'
+    mov byte [msg + ecx + esi * 2], '%'
     mov edx, msg
     call puts
 
@@ -20,5 +20,4 @@ _start:
 
 section	.data
 msg	db  'abcdefghijklmnopqrstuvwxyz0123456789',0xa,0 
-
 
