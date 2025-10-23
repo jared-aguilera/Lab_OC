@@ -73,7 +73,8 @@ _start:
 
 
     ; ---------- Inciso F 
-
+    mov bp, 0x67DA
+    
 
 
 
