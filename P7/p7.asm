@@ -74,11 +74,19 @@ _start:
 
     ; ---------- Inciso F 
     mov bp, 0x67DA
+    mov ax, bp
+    call pBin_w
+
+    mov al, 10
+    call putchar 
+    and bp, 0xBBAD
+    mov ax, bp
+    call pBin_w
+
+    mov al, 10
+    call putchar 
+    call putchar 
     
-
-
-
-
 
     ; ----- Fin del programa
     mov eax, 1
