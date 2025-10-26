@@ -86,7 +86,78 @@ _start:
     mov al, 10
     call putchar 
     call putchar 
-    
+
+
+    ; Incisos terminados en casa
+    ; ---------- Inciso G
+    mov ax, bp
+    call pBin_w
+
+    mov al, 10
+    call putchar
+        
+    shr bp, 3
+    mov ax, bp
+    call pBin_w
+
+    mov al, 10
+    call putchar 
+    call putchar 
+
+
+    ; ---------- Inciso H
+    mov ebx, 0x02218995
+    mov eax, ebx
+    call pHex_dw
+
+    mov al, 10
+    call putchar
+
+    shr ebx, 5
+    mov eax, ebx
+    call pHex_dw
+
+    mov al, 10
+    call putchar 
+    call putchar  
+
+
+    ; ---------- Inciso I
+    mov ax, cx
+    call pBin_w
+
+    mov al, 10
+    call putchar 
+
+    shl cx, 3
+    mov ax, cx
+    call pBin_w
+
+    mov al, 10
+    call putchar 
+    call putchar  
+
+
+    ; ---------- Inciso J
+    pop esi
+    mov eax, esi
+    call pHex_dw
+
+    mov al, 10
+    call putchar 
+    call putchar    
+
+    ; ---------- Inciso K
+    mov eax, esi
+    shl esi, 3
+    shl eax, 1
+    add eax, esi
+    call pHex_dw
+
+    mov al, 10
+    call putchar 
+    call putchar 
+
 
     ; ----- Fin del programa
     mov eax, 1
