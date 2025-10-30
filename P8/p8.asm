@@ -124,6 +124,7 @@ _start:
     mov al, 10
     call putchar
     mov cx, dx
+    dec dx
 
 loop .cicloI
 
