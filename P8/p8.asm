@@ -14,6 +14,10 @@ msgEsLetra db "El caracter capturado es una letra mayuscula", 10, 0
 msgEsNum db "El caracter capturado es un numero", 10, 0
 msgNegB db "El caracter no es una letra mayuscula ni un numero", 10, 0
 msgIncisoC db "Impresion de astericos: ", 10, 0
+msgIncisoD db "Ingresa 10 caracteres: ", 10, 0
+msgDatosCapt db "Datos Capturados: ", 10, 0
+arreglo db 10 dup(0)
+
 
 _start:
 
@@ -28,7 +32,7 @@ _start:
 
 .verMenor:
     cmp al, 'm'
-    jle .esMenor
+    jl .esMenor
     jmp .msgNegA
 
 .esMenor:    
@@ -98,7 +102,7 @@ _start:
     call putchar
     mov edx, msgIncisoC
     call puts
-    mov cx, 3 ; Aqui pongo el valor 
+    mov cx, 5 ; Aqui pongo el valor 
 
     cmp cx, 10
     jle .paso2C
@@ -129,21 +133,36 @@ _start:
 loop .cicloI
 
 
-
-
-
-
-
-
-
-
+    ; Ejercicio resuelto en casa
 .msgNegC:
     ; ---------- Inciso D 
     mov al, 10
     call putchar 
+    mov cx, 10
+    mov ebx, 0
+    mov edx, msgIncisoD
+    call puts
 
+.capturar:
+    call getche
+    mov byte [arreglo + ebx], al
+    inc ebx
+    loop .capturar
 
+    mov cx, 10
+    mov ebx, 0
+    mov al, 10
+    call putchar
+    mov edx, msgDatosCapt
+    call puts
 
+.desplegar:
+    mov al, [arreglo + ebx]
+    inc ebx
+    call putchar
+    mov al, 10
+    call putchar
+    loop .desplegar
 
     ; ----- Fin del programa
     mov eax, 1
