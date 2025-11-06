@@ -14,7 +14,6 @@ vec2 db ''
 
 _start:
 
-    ;jmp .hexa
     ; ---------- Capturar vector 1
     mov edx, msgCapturar
     call puts
@@ -32,17 +31,12 @@ _start:
     call .saltoLin
 
     .hexa:
-    ; ---------- 
+    ; ---------- Desplegar vector
     call .saltoLin
-    mov ebx, vec1
+    mov ebx, vec2
     mov ecx, N
     call .desplegar
 
-    call .saltoLin
-
-    call .sumar
-    mov edx, ebx
-    call puts
 
 
     call .saltoLin
@@ -84,7 +78,7 @@ ret
 .desplegar:
     .desp1:
         mov byte al, [ebx]
-        call pHex_b
+        call putchar
         inc ebx
     loop .desp1
 ret
