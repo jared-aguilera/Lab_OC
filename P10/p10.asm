@@ -1,7 +1,7 @@
 %include "../LIB/pc_iox.inc"
 
 global suma
-;global getBit
+global strlen
 
 
 
@@ -14,4 +14,9 @@ suma:
     add eax, [ebp + 12]
 
     pop ebp
+ret
+
+
+strlen:
+
 ret
