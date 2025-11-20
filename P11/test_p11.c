@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 extern void pBin8b(uint8_t dato1) ;
-//extern void pBin16b();
+extern void pBin16b(uint16_t dato2);
 //extern void pBin32b();
 //extern void pBin64b();
 
@@ -17,6 +17,13 @@ int main(){
     printf("El valor %d de 8 bits en binario es: ", dato1);
     pBin8b(dato1);
     printf("\n\n");
+
+    // Funcion 2
+    uint16_t dato2 = 320;
+    printf("El valor %d de 16 bits en binario es: ", dato2);
+    pBin16b(dato2);
+    printf("\n\n");
+
 
     return 0;
 }
