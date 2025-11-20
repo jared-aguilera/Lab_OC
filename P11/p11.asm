@@ -23,11 +23,11 @@ pBin8b:
     push ebx
 
     mov edx, 9
-    mov bl, 0
 
     ciclo1:
-        push eax
+        ;mov bl, al
         shl al, 1
+        mov bl, al
         jc esUno
         mov eax, '0'
         call myPutchar
@@ -39,7 +39,7 @@ pBin8b:
         fin1:
         dec edx
         mov ecx, edx
-        pop eax
+        mov al, bl
         loop ciclo1
 
     pop ebx 

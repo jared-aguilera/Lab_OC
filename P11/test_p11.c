@@ -13,7 +13,7 @@ extern void pBin8b(uint8_t dato1) ;
 int main(){
 
     // Funcion 1
-    uint8_t dato1 = 4;
+    uint8_t dato1 = 80;
     printf("El valor %d de 8 bits en binario es: ", dato1);
     pBin8b(dato1);
     printf("\n\n");
