@@ -1,6 +1,8 @@
 extern putchar 
 global pBin8b
 global pBin16b
+global pBin32b
+global pBin64b
 
 
 
@@ -15,71 +17,158 @@ myPutchar:
     pop edx
 ret
 
+imprimirGuion:
+    push eax
+    inc esi
+    cmp esi, 4
+    jnz seguir
+        mov al, '-'
+        call myPutchar
+        mov esi, 0
+    seguir:
+    pop eax
+ret
+
+
 pBin8b:
     push ebp
     mov ebp, esp
-    mov al, [ebp + 8]
-    push ecx
     push edx
-    push ebx
+    push ecx
+    push eax
+    push esi
+    mov dl, [ebp + 8]
 
-    mov edx, 9
+    mov ecx, 8
+    mov esi, 0
 
     ciclo1:
-        ;mov bl, al
-        shl al, 1
-        mov bl, al
-        jc esUno
-        mov eax, '0'
+        shl dl, 1
+        jc esUno_8b
+        mov al, '0'
         call myPutchar
-        jmp fin1
-
-        esUno:
-            mov eax, '1'
+        jmp finCiclo1
+        esUno_8b:
+            mov al, '1'
             call myPutchar
-        fin1:
-        dec edx
-        mov ecx, edx
-        mov al, bl
+        finCiclo1:
+        call imprimirGuion
         loop ciclo1
 
-    pop ebx 
-    pop edx 
+    pop esi
+    pop eax
     pop ecx
+    pop edx
     pop ebp
 ret
-
 
 pBin16b:
     push ebp
     mov ebp, esp
-    mov ax, [ebp + 8]
-    push ecx
     push edx
-    push ebx
+    push ecx
+    push eax
+    push esi
+    mov dx, [ebp + 8]
 
-    mov edx, 17
+    mov ecx, 16
+    mov esi, 0
 
     ciclo2:
-        ;mov bl, al
-        shl ax, 1
-        mov bx, ax
-        jc esUno2
-        mov eax, '0'
+        shl dx, 1
+        jc esUno_16b
+        mov al, '0'
         call myPutchar
-        jmp fin2
-
-        esUno2:
-            mov eax, '1'
+        jmp finCiclo2
+        esUno_16b:
+            mov al, '1'
             call myPutchar
-        fin2:
-        dec edx
-        mov ecx, edx
-        mov ax, bx
+        finCiclo2:
+        call imprimirGuion
         loop ciclo2
 
-    pop ebx 
-    pop edx 
+    pop esi
+    pop eax
     pop ecx
+    pop edx
+    pop ebp    
+ret
+
+pBin32b:
+    push ebp
+    mov ebp, esp
+    push edx
+    push ecx
+    push eax
+    push esi
+    mov edx, [ebp + 8]
+
+    mov ecx, 32
+    mov esi, 0
+
+    ciclo3:
+        shl edx, 1
+        jc esUno_32b
+        mov al, '0'
+        call myPutchar
+        jmp finCiclo3
+        esUno_32b:
+            mov al, '1'
+            call myPutchar
+        finCiclo3:
+        call imprimirGuion
+        loop ciclo3
+
+    pop esi
+    pop eax
+    pop ecx
+    pop edx
+    pop ebp    
+ret
+
+pBin64b:
+    push ebp
+    mov ebp, esp
+    push edx
+    push ecx
+    push ebx
+    push eax
+    push edi
+    push esi
+    mov edi, [ebp + 8]
+    mov edx, [ebp + 12]
+
+    mov ecx, 32
+    mov ebx, 1
+    mov esi, 0 
+
+    ciclo4:
+        shl edx, 1
+        jc esUno_64b
+        mov al, '0'
+        call myPutchar
+        jmp finCiclo4
+        esUno_64b:
+            mov al, '1'
+            call myPutchar
+        finCiclo4:
+        call imprimirGuion
+        loop ciclo4
+
+        cmp ebx, 0
+        jz final
+        mov ebx, 0
+        mov ecx, 32
+        mov edx, edi
+        jmp ciclo4
+
+    final:
+
+    pop esi
+    pop edi
+    pop eax
+    pop ebx
+    pop ecx
+    pop edx
     pop ebp
 ret
